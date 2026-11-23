@@ -8,8 +8,6 @@ import { audit } from "../../utils/audit.js";
  * No CRM machinery — just list, detail, stats and status follow-up.
  */
 
-const TYPES = ["DEMO_REQUEST", "GENERAL_ENQUIRY"];
-
 const shape = (l) => ({
   id: l.id,
   reference: l.reference,
