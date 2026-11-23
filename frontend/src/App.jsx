@@ -15,6 +15,7 @@ const PricingPage = lazy(() => import("./pages/PricingPage"));
 const QuotationPage = lazy(() => import("./pages/QuotationPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const RequestDemoPage = lazy(() => import("./pages/RequestDemoPage"));
+const AdminApp = lazy(() => import("./admin/AdminApp"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -32,34 +33,43 @@ function PageLoader() {
   );
 }
 
+function PublicShell() {
+  return (
+    <div className="flex min-h-screen flex-col">
+      <Navbar />
+      <main className="flex-1">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services/:slug" element={<ServiceDetailPage />} />
+          <Route path="/pricing" element={<PricingPage />} />
+          <Route path="/request-quotation" element={<QuotationPage />} />
+          <Route path="/portfolio" element={<PortfolioPage />} />
+          <Route path="/portfolio/:slug" element={<ProjectDetailPage />} />
+          <Route path="/work" element={<Navigate to="/portfolio" replace />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/request-demo" element={<RequestDemoPage />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <MotionConfig reducedMotion="user">
       <BrowserRouter>
         <EnquiryProvider>
           <ScrollToTop />
-          <div className="flex min-h-screen flex-col">
-            <Navbar />
-            <main className="flex-1">
-              <Suspense fallback={<PageLoader />}>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/services" element={<ServicesPage />} />
-                  <Route path="/services/:slug" element={<ServiceDetailPage />} />
-                  <Route path="/pricing" element={<PricingPage />} />
-                  <Route path="/request-quotation" element={<QuotationPage />} />
-                  <Route path="/portfolio" element={<PortfolioPage />} />
-                  <Route path="/portfolio/:slug" element={<ProjectDetailPage />} />
-                  <Route path="/work" element={<Navigate to="/portfolio" replace />} />
-                  <Route path="/about" element={<AboutPage />} />
-                  <Route path="/contact" element={<ContactPage />} />
-                  <Route path="/request-demo" element={<RequestDemoPage />} />
-                  <Route path="*" element={<Home />} />
-                </Routes>
-              </Suspense>
-            </main>
-            <Footer />
-          </div>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/admin/*" element={<AdminApp />} />
+              <Route path="*" element={<PublicShell />} />
+            </Routes>
+          </Suspense>
         </EnquiryProvider>
       </BrowserRouter>
     </MotionConfig>

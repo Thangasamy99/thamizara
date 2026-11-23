@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { api } from "../api";
+import { api } from "../adminApi";
 
 const fmtDate = (d) => new Date(d).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
 
@@ -37,7 +37,7 @@ export default function SubmissionDetail() {
   if (error && !sub) return <p className="error">{error}</p>;
   if (!sub) return <p className="empty">Loading…</p>;
 
-  const back = sub.type === "DEMO_REQUEST" ? "/demo-requests" : "/enquiries";
+  const back = sub.type === "DEMO_REQUEST" ? "/admin/demo-requests" : "/admin/enquiries";
 
   return (
     <>

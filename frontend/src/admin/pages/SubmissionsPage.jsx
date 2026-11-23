@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { api } from "../api";
+import { api } from "../adminApi";
 
 const fmtDate = (d) => new Date(d).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
 
@@ -87,7 +87,7 @@ export default function SubmissionsPage({ type, title }) {
               <td>{s.category || "—"}</td>
               <td>{fmtDate(s.createdAt)}</td>
               <td><span className={`badge ${s.status}`}>{s.status}</span></td>
-              <td><Link to={`/submissions/${s.id}`} className="btn ghost sm">View</Link></td>
+              <td><Link to={`/admin/submissions/${s.id}`} className="btn ghost sm">View</Link></td>
             </tr>
           ))}
           {data.rows.length === 0 && (

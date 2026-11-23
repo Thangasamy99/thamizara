@@ -1,10 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "services": {
-    "admin": {
-      "root": "admin",
-      "framework": "vite"
-    },
     "backend": {
       "root": "backend",
       "framework": "express",
@@ -16,12 +12,6 @@
     }
   },
   "rewrites": [
-    {
-      "source": "/admin/?(.*)",
-      "destination": {
-        "service": "admin"
-      }
-    },
     {
       "source": "/api/(.*)",
       "destination": {

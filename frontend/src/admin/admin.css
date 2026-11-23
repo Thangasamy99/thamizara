@@ -1,0 +1,169 @@
+.admin-app {
+  --brand: #245BDB;
+  --brand-2: #3978F6;
+  --ink: #17243A;
+  --mist: #F4F7FC;
+  --body: #64748B;
+  --line: #E2E8F0;
+  --red: #DC2626;
+  --green: #16A34A;
+  --amber: #D97706;
+}
+
+.admin-app * { box-sizing: border-box; }
+
+.admin-app {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  background: var(--mist);
+}
+
+.admin-app a { color: var(--brand); text-decoration: none; }
+
+.admin-app button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* ── Layout ── */
+.admin-app .layout { display: flex; min-height: 100vh; }
+.admin-app .sidebar {
+  width: 230px;
+  background: var(--ink);
+  color: #fff;
+  padding: 20px 14px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.admin-app .sidebar .logo {
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: 0.5px;
+  padding: 6px 10px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  margin-bottom: 14px;
+}
+.admin-app .sidebar .logo span { color: var(--brand-2); }
+.admin-app .sidebar a {
+  display: block;
+  color: rgba(255,255,255,0.75);
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+.admin-app .sidebar a:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.admin-app .sidebar a.active { background: var(--brand); color: #fff; }
+.admin-app .sidebar .foot {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+}
+.admin-app .sidebar .foot button {
+  margin-top: 8px;
+  width: 100%;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 9px;
+}
+.admin-app .sidebar .foot button:hover { background: rgba(255,255,255,0.2); }
+
+.admin-app .main { flex: 1; padding: 28px 32px; min-width: 0; }
+.admin-app .page-title { font-size: 22px; font-weight: 700; margin: 0 0 4px; }
+.admin-app .page-sub { color: var(--body); font-size: 14px; margin: 0 0 22px; }
+
+/* ── Cards & stats ── */
+.admin-app .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; }
+.admin-app .card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px;
+}
+.admin-app .card .num { font-size: 28px; font-weight: 800; color: var(--brand); }
+.admin-app .card .lbl { font-size: 13px; color: var(--body); margin-top: 2px; }
+
+/* ── Forms ── */
+.admin-app .field { margin-bottom: 14px; }
+.admin-app .field label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 5px; }
+.admin-app input, .admin-app select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 9px 12px;
+  font: inherit;
+  font-size: 14px;
+  background: #fff;
+}
+.admin-app input:focus, .admin-app select:focus { outline: 2px solid rgba(36,91,219,0.25); border-color: var(--brand); }
+.admin-app .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+.admin-app .filters input, .admin-app .filters select { width: auto; min-width: 150px; }
+
+.admin-app .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--brand);
+  color: #fff;
+  border: none;
+  border-radius: 9px;
+  padding: 9px 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.admin-app .btn:hover { background: var(--brand-2); }
+.admin-app .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.admin-app .btn.ghost { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+.admin-app .btn.ghost:hover { border-color: var(--brand); color: var(--brand); }
+.admin-app .btn.sm { padding: 6px 11px; font-size: 13px; }
+
+/* ── Table ── */
+.admin-app table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 12px; overflow: hidden; }
+.admin-app thead th {
+  text-align: left;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--body);
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--line);
+  background: #FBFCFE;
+}
+.admin-app tbody td { padding: 12px 14px; border-bottom: 1px solid var(--line); font-size: 14px; }
+.admin-app tbody tr:hover { background: var(--mist); }
+.admin-app .ref { font-family: monospace; font-weight: 600; color: var(--brand); }
+
+.admin-app .badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+.admin-app .badge.NEW { background: #DBEAFE; color: #1D4ED8; }
+.admin-app .badge.CONTACTED { background: #FEF3C7; color: #B45309; }
+.admin-app .badge.COMPLETED { background: #DCFCE7; color: #15803D; }
+.admin-app .badge.CANCELLED { background: #FEE2E2; color: #B91C1C; }
+
+/* ── Login ── */
+.admin-app .login-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.admin-app .login-card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 34px; width: 380px; }
+.admin-app .login-card h1 { font-size: 20px; margin: 0 0 4px; }
+.admin-app .login-card p { color: var(--body); font-size: 14px; margin: 0 0 22px; }
+
+/* ── Detail ── */
+.admin-app .detail-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
+.admin-app .dl { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.admin-app .dl .k { font-size: 12px; color: var(--body); text-transform: uppercase; letter-spacing: 0.4px; }
+.admin-app .dl .v { margin-top: 4px; font-size: 14px; font-weight: 500; word-break: break-word; }
+.admin-app .msg-box { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; margin-top: 14px; white-space: pre-wrap; font-size: 14px; line-height: 1.6; }
+
+.admin-app .error { color: var(--red); font-size: 13px; }
+.admin-app .empty { color: var(--body); text-align: center; padding: 40px 0; font-size: 14px; }
+.admin-app .pager { display: flex; gap: 10px; align-items: center; margin-top: 14px; font-size: 13px; color: var(--body); }

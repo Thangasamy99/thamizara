@@ -121,14 +121,12 @@ export default function Footer() {
         <div className="container-x flex flex-col items-center justify-between gap-2 py-5 text-xs sm:flex-row">
           <p>© {year} {siteConfig.name}. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            {siteConfig.adminUrl && (
-              <a
-                href={`${siteConfig.adminUrl}/login`}
-                className="text-white/30 transition-colors hover:text-brand-500"
-              >
-                Admin Login
-              </a>
-            )}
+            <Link
+              to="/admin/login"
+              className="text-white/30 transition-colors hover:text-brand-500"
+            >
+              Admin Login
+            </Link>
             <p className="text-white/30">{siteConfig.tagline}</p>
           </div>
         </div>

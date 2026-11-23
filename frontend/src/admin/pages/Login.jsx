@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { api, setToken } from "../api";
+import { api, setToken } from "../adminApi";
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -11,7 +11,7 @@ export default function Login() {
     try {
       const res = await api.login(form.email, form.password);
       setToken(res.data.accessToken);
-      window.location.href = "/";
+      window.location.href = "/admin";
     } catch (err) {
       setState({ loading: false, error: err.message });
     }

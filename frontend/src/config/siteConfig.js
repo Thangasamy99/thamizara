@@ -20,8 +20,6 @@ export const siteConfig = {
     region: "Cameroon · Nigeria · Remote Worldwide",
   },
 
-  // Internal admin application URL — footer "Admin Login" link.
-  adminUrl: "http://localhost:5174",
 
   socials: [
     // Add profile URLs to display social icons in the footer.

@@ -8,7 +8,7 @@ const TOKEN_KEY = "tmz_admin_token";
 
 export const getToken = () => localStorage.getItem(TOKEN_KEY);
 export const setToken = (t) => (t ? localStorage.setItem(TOKEN_KEY, t) : localStorage.removeItem(TOKEN_KEY));
-const loginPath = `${import.meta.env.BASE_URL}login`;
+const loginPath = "/admin/login";
 
 async function request(path, { method = "GET", body } = {}) {
   const res = await fetch(`${BASE}${path}`, {

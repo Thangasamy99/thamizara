@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { api } from "../api";
+import { api } from "../adminApi";
 
 const CARDS = [
-  ["totalDemo", "Total Demo Requests", "/demo-requests"],
-  ["newDemo", "New Demo Requests", "/demo-requests?status=NEW"],
-  ["totalEnquiries", "Total Enquiries", "/enquiries"],
-  ["newEnquiries", "New Enquiries", "/enquiries?status=NEW"],
-  ["contacted", "Contacted", "/enquiries?status=CONTACTED"],
-  ["completed", "Completed", "/enquiries?status=COMPLETED"],
+  ["totalDemo", "Total Demo Requests", "/admin/demo-requests"],
+  ["newDemo", "New Demo Requests", "/admin/demo-requests?status=NEW"],
+  ["totalEnquiries", "Total Enquiries", "/admin/enquiries"],
+  ["newEnquiries", "New Enquiries", "/admin/enquiries?status=NEW"],
+  ["contacted", "Contacted", "/admin/enquiries?status=CONTACTED"],
+  ["completed", "Completed", "/admin/enquiries?status=COMPLETED"],
 ];
 
 export default function Dashboard() {

@@ -2,9 +2,8 @@
 
 | Directory | What it is |
 |---|---|
-| `frontend/` | Public website — React + Vite + Tailwind (Phases 1–3, deployed on Vercel) |
+| `frontend/` | Public website + admin dashboard (`/admin`) — React + Vite + Tailwind |
 | `backend/` | Business management API — Express + MySQL (Phase 4) |
-| `admin/` | Admin dashboard — React + Vite (Phase 4.7, not yet created) |
 
 See each directory's own README for setup and scripts.
 
