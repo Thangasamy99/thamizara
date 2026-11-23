@@ -20,7 +20,9 @@ export default function Login() {
   return (
     <div className="login-wrap">
       <form className="login-card" onSubmit={submit}>
-        <h1>THAMIZARA Admin</h1>
+        <img src={`${import.meta.env.BASE_URL}logo.png`} alt="THAMIZARA"
+          style={{ height: 44, width: "auto", marginBottom: 14 }} />
+        <h1>Admin</h1>
         <p>Sign in to manage enquiries and demo requests.</p>
         <div className="field">
           <label htmlFor="email">Email</label>

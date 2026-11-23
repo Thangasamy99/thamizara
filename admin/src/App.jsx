@@ -11,7 +11,11 @@ function Layout({ children }) {
   return (
     <div className="layout">
       <aside className="sidebar">
-        <div className="logo">THAMIZARA <span>Admin</span></div>
+        <div className="logo" style={{ borderBottom: "1px solid rgba(255,255,255,0.12)" }}>
+          <img src={`${import.meta.env.BASE_URL}logo.png`} alt="THAMIZARA"
+            style={{ height: 40, width: "auto", borderRadius: 8, background: "#fff", padding: "4px 8px" }} />
+          <span style={{ display: "block", fontSize: 12, color: "rgba(255,255,255,0.6)", marginTop: 6 }}>Admin</span>
+        </div>
         <NavLink to="/" end>Dashboard</NavLink>
         <NavLink to="/demo-requests">Demo Requests</NavLink>
         <NavLink to="/enquiries">General Enquiries</NavLink>
