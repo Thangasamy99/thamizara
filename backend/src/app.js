@@ -23,24 +23,27 @@ app.disable("x-powered-by");
 app.set("trust proxy", 1); // behind Nginx — needed for real client IPs / rate limits
 
 app.use(helmet());
-app.use(
-  cors({
-    origin: (origin, cb) => {
-      // Allow same-origin / non-browser clients (no Origin header), the
-      // configured allowlist, and our own deployed site/admin origins.
-      const allowed = new Set([
-        ...env.CORS_ORIGINS, env.PUBLIC_SITE_URL, env.ADMIN_APP_URL,
-      ]);
-      if (!origin || allowed.has(origin)) return cb(null, true);
-      // In development, any localhost/127.0.0.1 origin is fine (Vite, previews).
-      if (!env.isProd && /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) {
-        return cb(null, true);
-      }
-      cb(new Error("Not allowed by CORS"));
-    },
-    credentials: true,
-  }),
-);
+const corsOptions = (req) => ({
+  origin: (origin, cb) => {
+    // Non-browser clients (no Origin header), the configured allowlist,
+    // and our own deployed site/admin origins.
+    const allowed = new Set([
+      ...env.CORS_ORIGINS, env.PUBLIC_SITE_URL, env.ADMIN_APP_URL,
+    ]);
+    if (!origin || allowed.has(origin)) return cb(null, true);
+    // Same-origin request (browser hitting this host directly) — always fine.
+    try {
+      if (new URL(origin).host === req.headers.host) return cb(null, true);
+    } catch { /* fall through to rejection */ }
+    // In development, any localhost/127.0.0.1 origin is fine (Vite, previews).
+    if (!env.isProd && /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) {
+      return cb(null, true);
+    }
+    cb(new Error("Not allowed by CORS"));
+  },
+  credentials: true,
+});
+app.use((req, res, next) => cors(corsOptions(req))(req, res, next));
 app.use(express.json({ limit: "1mb" }));
 app.use(express.urlencoded({ extended: false, limit: "1mb" }));
 app.use(cookieParser());

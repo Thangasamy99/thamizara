@@ -77,10 +77,15 @@ if (env.isProd) {
     weak.push("JWT_ACCESS_SECRET");
   if (env.JWT_REFRESH_SECRET.includes("change-me") || env.JWT_REFRESH_SECRET.length < 32)
     weak.push("JWT_REFRESH_SECRET");
-  if (!env.DB_PASSWORD) weak.push("DB_PASSWORD");
   if (weak.length) {
     console.error(`Refusing to start in production with insecure config: ${weak.join(", ")}`);
     process.exit(1);
+  }
+  // Missing DB credentials is NOT fatal — the app boots, /health reports
+  // db:down and DB-backed endpoints return 500s until credentials are set.
+  // Auth/JWT security above is never weakened by this.
+  if (!env.DB_PASSWORD) {
+    console.warn("DB_PASSWORD not set — starting without a database; /health will report db: down");
   }
 }
 
