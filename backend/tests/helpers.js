@@ -1,6 +1,5 @@
 import { execSync } from "node:child_process";
 import path from "node:path";
-import bcrypt from "bcryptjs";
 
 // Test environment — set BEFORE any app imports.
 process.env.NODE_ENV = "test";
@@ -18,6 +17,7 @@ export const BACKEND_DIR = path.resolve(
 
 const { getPool, closePool } = await import("../src/database/pool.js");
 const { seedRbac } = await import("../src/database/seedRbac.js");
+const { hashPassword } = await import("../src/utils/passwords.js");
 
 const TABLES = [
   "activity_logs", "notification_attempts", "notifications", "idempotency_keys",
@@ -44,7 +44,7 @@ export async function resetTestDb() {
 
 export async function makeUser({ email, password = "Passw0rd!A", roles = ["STAFF"], status = "ACTIVE", name = "Test User" }) {
   const pool = getPool();
-  const hash = await bcrypt.hash(password, 12);
+  const hash = await hashPassword(password);
   const [r] = await pool.query(
     "INSERT INTO users (name, email, password_hash, status) VALUES (?, ?, ?, ?)",
     [name, email, hash, status],

@@ -11,7 +11,7 @@
  * roles/permissions matrix idempotently.
  */
 import readline from "node:readline";
-import bcrypt from "bcryptjs";
+import { hashPassword } from "../src/utils/passwords.js";
 import env from "../src/config/env.js";
 import { getPool, withTransaction, closePool } from "../src/database/pool.js";
 import { seedRbac } from "../src/database/seedRbac.js";
@@ -78,7 +78,7 @@ async function main() {
     return;
   }
 
-  const hash = await bcrypt.hash(password, env.BCRYPT_ROUNDS);
+  const hash = await hashPassword(password);
   await withTransaction(async (conn) => {
     await seedRbac(conn);
     const [r] = await conn.query(

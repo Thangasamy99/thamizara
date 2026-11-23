@@ -1,4 +1,4 @@
-import bcrypt from "bcryptjs";
+import { hashPassword } from "../../utils/passwords.js";
 import env from "../../config/env.js";
 import { getPool, withTransaction } from "../../database/pool.js";
 import ApiError from "../../utils/ApiError.js";
@@ -98,7 +98,7 @@ export async function createUser(actor, data) {
   }
 
   const password = data.password ?? randomToken(10);
-  const hash = await bcrypt.hash(password, env.BCRYPT_ROUNDS);
+  const hash = await hashPassword(password);
   const id = await withTransaction(async (conn) => {
     const [r] = await conn.query(
       `INSERT INTO users (name, email, password_hash, phone, profile_image_url, status)

@@ -33,6 +33,8 @@ const envSchema = z.object({
   JWT_REFRESH_TTL_DAYS: z.coerce.number().int().positive().default(30),
 
   BCRYPT_ROUNDS: z.coerce.number().int().min(10).max(15).default(12),
+  // PBKDF2-SHA-256 iterations for new password hashes (OWASP floor ~210k).
+  PASSWORD_HASH_ITERATIONS: z.coerce.number().int().min(10_000).default(210_000),
 
   PASSWORD_RESET_TTL_MINUTES: z.coerce.number().int().positive().default(60),
   ADMIN_APP_URL: z.string().url().default("http://localhost:5174"),

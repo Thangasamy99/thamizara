@@ -1,6 +1,6 @@
 import crypto from "node:crypto";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
+import { hashPassword, verifyPassword, needsRehash } from "../../utils/passwords.js";
 import env from "../../config/env.js";
 import { getPool, withTransaction } from "../../database/pool.js";
 import ApiError from "../../utils/ApiError.js";
@@ -92,7 +92,7 @@ export async function login({ email, password }, ctx) {
     throw new ApiError(429, "Account temporarily locked due to failed attempts. Please try again later.");
   }
 
-  const passwordOk = user && (await bcrypt.compare(password, user.password_hash));
+  const passwordOk = user && (await verifyPassword(password, user.password_hash));
   if (!passwordOk) {
     if (user) {
       const attempts = user.failed_login_attempts + 1;
@@ -115,9 +115,13 @@ export async function login({ email, password }, ctx) {
     throw ApiError.forbidden("This account is not active. Contact an administrator.");
   }
 
+  // Transparent migration: legacy bcrypt hash → PBKDF2 on successful login.
+  const rehash = needsRehash(user.password_hash)
+    ? await hashPassword(password)
+    : null;
   await pool.query(
-    "UPDATE users SET failed_login_attempts = 0, locked_until = NULL, last_login_at = NOW() WHERE id = ?",
-    [user.id],
+    "UPDATE users SET failed_login_attempts = 0, locked_until = NULL, last_login_at = NOW(), password_hash = COALESCE(?, password_hash) WHERE id = ?",
+    [rehash, user.id],
   );
   await audit({ actorId: user.id, action: "auth.login.success", entityType: "user", entityId: user.id, ip: ctx.ip });
 
@@ -198,10 +202,10 @@ export async function logoutAll(userId, ctx) {
 export async function changePassword(userId, { currentPassword, newPassword }, ctx) {
   const pool = getPool();
   const [rows] = await pool.query("SELECT password_hash FROM users WHERE id = ? AND deleted_at IS NULL", [userId]);
-  if (!rows[0] || !(await bcrypt.compare(currentPassword, rows[0].password_hash))) {
+  if (!rows[0] || !(await verifyPassword(currentPassword, rows[0].password_hash))) {
     throw ApiError.badRequest("Current password is incorrect");
   }
-  const hash = await bcrypt.hash(newPassword, env.BCRYPT_ROUNDS);
+  const hash = await hashPassword(newPassword);
   await withTransaction(async (conn) => {
     await conn.query("UPDATE users SET password_hash = ? WHERE id = ?", [hash, userId]);
     await conn.query("UPDATE refresh_tokens SET revoked_at = NOW() WHERE user_id = ? AND revoked_at IS NULL", [userId]);
@@ -244,7 +248,7 @@ export async function resetPassword({ token, password }, ctx) {
   if (!stored || stored.used_at || new Date(stored.expires_at) <= new Date()) {
     throw ApiError.badRequest("Reset link is invalid or has expired");
   }
-  const hash = await bcrypt.hash(password, env.BCRYPT_ROUNDS);
+  const hash = await hashPassword(password);
   await withTransaction(async (conn) => {
     await conn.query("UPDATE users SET password_hash = ? WHERE id = ?", [hash, stored.user_id]);
     // Single-use + invalidate any other outstanding tokens & sessions.
