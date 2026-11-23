@@ -11,7 +11,9 @@
     "seed": "node seeds/seed.js",
     "seed:admin": "node seeds/seed.js",
     "lint": "oxlint",
-    "test": "node --test --test-concurrency=1 \"tests/*.test.js\""
+    "test": "node --test --test-concurrency=1 \"tests/*.test.js\"",
+    "cf:dev": "wrangler dev",
+    "cf:deploy": "wrangler deploy"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -30,6 +32,14 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.9",
-    "oxlint": "^1.90.0"
+    "oxlint": "^1.90.0",
+    "wrangler": "^4.166.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "workerd@1.20261119.1": true
+  },
+  "overrides": {
+    "iconv-lite": "0.6.3"
   }
 }

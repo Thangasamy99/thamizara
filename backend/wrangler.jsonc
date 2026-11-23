@@ -1,0 +1,23 @@
+{
+  "name": "thamizara-api",
+  "main": "worker.js",
+  // >= 2025-09-01 auto-enables node:http server modules (Express via httpServerHandler)
+  "compatibility_date": "2025-12-10",
+  "compatibility_flags": ["nodejs_compat"],
+
+  // Route /api/* on the same domain as the Pages site — add after deploy:
+  // "routes": [{ "pattern": "your-domain.com/api/*", "zone_name": "your-domain.com" }]
+
+  // Hyperdrive (recommended for TiDB): create with
+  //   wrangler hyperdrive create thamizara-db \
+  //     --connection-string="mysql://USER:PASS@gateway01.ap-southeast-1.prod.aws.tidbcloud.com:4000/thamizora"
+  // then paste the returned id here and uncomment:
+  // "hyperdrive": [{ "binding": "HYPERDRIVE", "id": "<hyperdrive-config-id>" }]
+
+  // Non-secret vars — set secrets with `wrangler secret put <NAME>` instead.
+  "vars": {
+    "NODE_ENV": "production",
+    "DB_CONNECTION_LIMIT": "2",
+    "NOTIFICATION_AUTODELIVER": "false"
+  }
+}

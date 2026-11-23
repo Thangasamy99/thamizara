@@ -2,12 +2,11 @@ import express from "express";
 import helmet from "helmet";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import { pinoHttp } from "pino-http";
 import env from "./config/env.js";
 import logger from "./utils/logger.js";
 import { ok } from "./utils/respond.js";
 import { asyncHandler } from "./utils/asyncHandler.js";
-import { checkDb } from "./database/pool.js";
+import { checkDb, dbContext, closeRequestPool } from "./database/pool.js";
 import { notFound, errorHandler } from "./middleware/errorHandler.js";
 import { apiLimiter, authLimiter, publicLimiter } from "./middleware/rateLimit.js";
 import authRoutes from "./modules/auth/auth.routes.js";
@@ -47,7 +46,23 @@ app.use((req, res, next) => cors(corsOptions(req))(req, res, next));
 app.use(express.json({ limit: "1mb" }));
 app.use(express.urlencoded({ extended: false, limit: "1mb" }));
 app.use(cookieParser());
-app.use(pinoHttp({ logger, autoLogging: { ignore: (req) => req.url === "/health" } }));
+const isWorkers =
+  typeof navigator !== "undefined" && navigator.userAgent === "Cloudflare-Workers";
+// pino-http breaks under workerd bundling — use it on Node, a minimal
+// request log on Workers.
+if (isWorkers) {
+  app.use((req, res, next) => {
+    res.once("finish", closeRequestPool);
+    if (req.url !== "/health") {
+      res.once("finish", () =>
+        logger.info({ method: req.method, url: req.url, status: res.statusCode }, "request"));
+    }
+    dbContext.run({}, next);
+  });
+} else {
+  const { pinoHttp } = await import("pino-http");
+  app.use(pinoHttp({ logger, autoLogging: { ignore: (req) => req.url === "/health" } }));
+}
 
 // Liveness probe — always 200; reports dependency status.
 app.get(

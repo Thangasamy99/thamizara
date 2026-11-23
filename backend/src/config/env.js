@@ -22,6 +22,8 @@ const envSchema = z.object({
   DB_USER: z.string().default("thamizora_app"),
   DB_PASSWORD: z.string().default(""),
   DB_CONNECTION_LIMIT: z.coerce.number().int().positive().default(10),
+  // TLS to the MySQL server (required by TiDB Cloud and most managed MySQL).
+  DB_SSL: bool(false),
 
   JWT_ISSUER: z.string().default("thamizara-api"),
   JWT_AUDIENCE: z.string().default("thamizara-admin"),

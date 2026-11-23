@@ -193,3 +193,18 @@ erDiagram
 Hostinger Ubuntu VPS → Nginx reverse proxy (`api.your-domain.com`) → PM2
 (`npm start`, non-root user) → MySQL 8 on localhost (port 3306 not exposed).
 Public site stays on Vercel; admin app deploys separately.
+
+### Cloudflare Workers
+
+`worker.js` runs the same Express app under workerd (`httpServerHandler`,
+no `app.listen`-style daemon, no background worker). Config: `wrangler.jsonc`.
+
+```bash
+npm run cf:dev      # wrangler dev — local workerd + your .env vars
+npm run cf:deploy   # wrangler deploy — requires Cloudflare auth
+```
+
+On Workers the DB pool is per-request (sockets cannot cross request
+boundaries) and `pino-http` is replaced with a minimal request log.
+Set `DB_SSL=true` for TiDB Cloud / managed MySQL TLS, or bind Hyperdrive
+(`HYPERDRIVE`) for pooled connectivity — see `wrangler.jsonc` comments.
