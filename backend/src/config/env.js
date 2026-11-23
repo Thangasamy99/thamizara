@@ -10,7 +10,7 @@ const bool = (def) =>
 const envSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   PORT: z.coerce.number().int().positive().default(4000),
-  APP_NAME: z.string().default("THAMIZORA API"),
+  APP_NAME: z.string().default("THAMIZARA API"),
   CORS_ORIGINS: z
     .string()
     .default("http://localhost:5173")
@@ -23,8 +23,8 @@ const envSchema = z.object({
   DB_PASSWORD: z.string().default(""),
   DB_CONNECTION_LIMIT: z.coerce.number().int().positive().default(10),
 
-  JWT_ISSUER: z.string().default("thamizora-api"),
-  JWT_AUDIENCE: z.string().default("thamizora-admin"),
+  JWT_ISSUER: z.string().default("thamizara-api"),
+  JWT_AUDIENCE: z.string().default("thamizara-admin"),
   JWT_ACCESS_SECRET: z.string().default("dev-only-secret-change-me"),
   JWT_ACCESS_TTL: z.string().default("15m"),
   JWT_REFRESH_SECRET: z.string().default("dev-only-secret-change-me"),
@@ -52,7 +52,7 @@ const envSchema = z.object({
   SMTP_SECURE: bool(false),
   SMTP_USER: z.string().default(""),
   SMTP_PASS: z.string().default(""),
-  MAIL_FROM: z.string().default("THAMIZORA Technologies <no-reply@thamizora.com>"),
+  MAIL_FROM: z.string().default("THAMIZARA Technologies <no-reply@thamizara.com>"),
   ADMIN_NOTIFY_EMAILS: z
     .string()
     .default("")

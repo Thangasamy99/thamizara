@@ -2,7 +2,7 @@ import { Rocket, TrendingUp, Building } from "lucide-react";
 
 /**
  * Service-level pricing presentation.
- * THAMIZORA uses custom quotation pricing — no fixed prices are published.
+ * THAMIZARA uses custom quotation pricing — no fixed prices are published.
  */
 export const pricingTiers = [
   {

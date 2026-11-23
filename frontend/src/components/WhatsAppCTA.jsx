@@ -7,7 +7,7 @@ import { siteConfig } from "../config/siteConfig";
  * configured in siteConfig — never links to a dead wa.me URL.
  */
 export default function WhatsAppCTA({
-  message = "Hello THAMIZORA, I would like to discuss a project.",
+  message = "Hello THAMIZARA, I would like to discuss a project.",
   children = "WhatsApp Us",
   variant = "outlineLight",
   size = "lg",
@@ -17,7 +17,7 @@ export default function WhatsAppCTA({
 
   const href = whatsappNumber
     ? `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
-    : `mailto:${email}?subject=${encodeURIComponent("Project enquiry — THAMIZORA Technologies")}&body=${encodeURIComponent(message)}`;
+    : `mailto:${email}?subject=${encodeURIComponent("Project enquiry — THAMIZARA Technologies")}&body=${encodeURIComponent(message)}`;
 
   return (
     <Button href={href} variant={variant} size={size} className={className}>

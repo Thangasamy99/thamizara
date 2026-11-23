@@ -1,8 +1,8 @@
-# THAMIZORA Technologies — Website (Frontend)
+# THAMIZARA Technologies — Website (Frontend)
 
 **Tamil Roots. Global Innovation.**
 
-Company website for THAMIZORA Technologies — a software development company
+Company website for THAMIZARA Technologies — a software development company
 serving small businesses, students, institutions and organisations across
 Cameroon, Nigeria, Africa and international clients.
 
@@ -143,7 +143,7 @@ Adjust `executablePath` in the script for your browser.
    If it's a subdirectory, set **Root Directory** to `frontend`.
 4. `vercel.json` already includes the SPA rewrite so client-side routes
    (`/services`, `/work`, …) work on refresh.
-5. Later, attach the custom domain: `thamizora.com`.
+5. Later, attach the custom domain: `thamizara.com`.
 
 ## Phase 1 Scope
 

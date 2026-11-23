@@ -26,7 +26,7 @@ export default function ServiceDetailPage() {
   return (
     <>
       <Seo
-        title={`${service.title} — THAMIZORA`}
+        title={`${service.title} — THAMIZARA`}
         description={service.description}
         path={`/services/${service.slug}`}
       />
@@ -180,7 +180,7 @@ export default function ServiceDetailPage() {
             <WhatsAppCTA
               size="lg"
               className="w-full sm:w-auto"
-              message={`Hello THAMIZORA, I'm interested in your ${service.title}. Can we discuss?`}
+              message={`Hello THAMIZARA, I'm interested in your ${service.title}. Can we discuss?`}
             />
           </div>
         </motion.div>

@@ -1,5 +1,5 @@
 /**
- * Thin client for the THAMIZORA backend API.
+ * Thin client for the THAMIZARA backend API.
  *
  * Enabled only when VITE_API_BASE_URL is configured — without it the site
  * keeps its mailto/WhatsApp fallback behaviour. No secrets ever live here.

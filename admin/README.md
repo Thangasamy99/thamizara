@@ -1,4 +1,4 @@
-# THAMIZORA Admin
+# THAMIZARA Admin
 
 Separate React + Vite admin application for the simplified enquiry model.
 Manages demo requests and general enquiries submitted through the public
@@ -36,5 +36,5 @@ ADMIN or SALES_MANAGER). Create the first admin with
 ## Production build
 
 ```bash
-npm run build   # → dist/ — serve behind Nginx at e.g. admin.thamizora.com
+npm run build   # → dist/ — serve behind Nginx at e.g. admin.thamizara.com
 ```

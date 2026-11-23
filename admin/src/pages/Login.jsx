@@ -20,7 +20,7 @@ export default function Login() {
   return (
     <div className="login-wrap">
       <form className="login-card" onSubmit={submit}>
-        <h1>THAMIZORA Admin</h1>
+        <h1>THAMIZARA Admin</h1>
         <p>Sign in to manage enquiries and demo requests.</p>
         <div className="field">
           <label htmlFor="email">Email</label>

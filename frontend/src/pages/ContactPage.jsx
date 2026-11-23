@@ -73,7 +73,7 @@ export default function ContactPage() {
     <>
       <Seo
         title="Contact Us"
-        description="Send a general enquiry to THAMIZORA Technologies — software, websites, mobile apps, mentoring or partnerships."
+        description="Send a general enquiry to THAMIZARA Technologies — software, websites, mobile apps, mentoring or partnerships."
         path="/contact"
       />
       <PageHeader

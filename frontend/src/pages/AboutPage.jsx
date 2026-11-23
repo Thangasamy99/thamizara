@@ -29,13 +29,13 @@ export default function AboutPage() {
     <>
       <Seo
         title="About Us"
-        description="THAMIZORA Technologies — Tamil Roots. Global Innovation. A software development company serving Cameroon, Nigeria, Africa and international clients."
+        description="THAMIZARA Technologies — Tamil Roots. Global Innovation. A software development company serving Cameroon, Nigeria, Africa and international clients."
         path="/about"
       />
       <PageHeader
         eyebrow="About Us"
         title={siteConfig.tagline}
-        description="THAMIZORA Technologies is a software development company serving clients in Cameroon, Nigeria, across Africa and internationally. We build practical technology for businesses of every size."
+        description="THAMIZARA Technologies is a software development company serving clients in Cameroon, Nigeria, across Africa and internationally. We build practical technology for businesses of every size."
       />
 
       <section className="bg-white py-16 lg:py-24">

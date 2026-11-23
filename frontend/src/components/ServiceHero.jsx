@@ -67,7 +67,7 @@ export default function ServiceHero({ service }) {
                 variant="secondary"
                 size="lg"
                 className="w-full sm:w-auto"
-                message={`Hello THAMIZORA, I'm interested in your ${service.title}. Can we discuss?`}
+                message={`Hello THAMIZARA, I'm interested in your ${service.title}. Can we discuss?`}
               >
                 Discuss Your Project
               </WhatsAppCTA>

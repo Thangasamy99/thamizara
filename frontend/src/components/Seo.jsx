@@ -24,7 +24,7 @@ function setCanonical(href) {
 export default function Seo({ title, description, path = "/" }) {
   useEffect(() => {
     const fullTitle = `${title} | ${siteConfig.name}`;
-    const url = `https://thamizora.com${path}`;
+    const url = `https://thamizara.com${path}`;
     document.title = fullTitle;
     setMeta("name", "description", description);
     setMeta("property", "og:title", fullTitle);

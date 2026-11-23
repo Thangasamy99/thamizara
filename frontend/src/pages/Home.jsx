@@ -12,7 +12,7 @@ export default function Home() {
     <>
       <Seo
         title="Tamil Roots. Global Innovation."
-        description="THAMIZORA Technologies builds affordable custom software, web and mobile applications for small businesses, students, institutions and organisations across Africa and worldwide."
+        description="THAMIZARA Technologies builds affordable custom software, web and mobile applications for small businesses, students, institutions and organisations across Africa and worldwide."
         path="/"
       />
       <Hero />

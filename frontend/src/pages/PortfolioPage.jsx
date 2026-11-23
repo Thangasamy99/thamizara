@@ -18,7 +18,7 @@ export default function PortfolioPage() {
     <>
       <Seo
         title="Our Work — Software Portfolio"
-        description="Explore software applications built by THAMIZORA Technologies — hospital, school, property, e-commerce, church, hotel and hostel management systems."
+        description="Explore software applications built by THAMIZARA Technologies — hospital, school, property, e-commerce, church, hotel and hostel management systems."
         path="/portfolio"
       />
 

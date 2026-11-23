@@ -1,5 +1,5 @@
 -- ============================================================
--- THAMIZORA Technologies — 001_initial_schema
+-- THAMIZARA Technologies — 001_initial_schema
 -- MySQL 8.x · InnoDB · utf8mb4
 -- Business records use soft deletes; history tables have no
 -- cascade deletes so audit data can never be destroyed by a

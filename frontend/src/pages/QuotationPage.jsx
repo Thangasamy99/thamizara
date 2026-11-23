@@ -7,7 +7,7 @@ export default function QuotationPage() {
     <>
       <Seo
         title="Request a Quotation"
-        description="Request a customised software development quotation from THAMIZORA Technologies — prepared in XAF, NGN or USD."
+        description="Request a customised software development quotation from THAMIZARA Technologies — prepared in XAF, NGN or USD."
         path="/request-quotation"
       />
       <PageHeader

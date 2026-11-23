@@ -11,7 +11,7 @@ function Layout({ children }) {
   return (
     <div className="layout">
       <aside className="sidebar">
-        <div className="logo">THAMIZORA <span>Admin</span></div>
+        <div className="logo">THAMIZARA <span>Admin</span></div>
         <NavLink to="/" end>Dashboard</NavLink>
         <NavLink to="/demo-requests">Demo Requests</NavLink>
         <NavLink to="/enquiries">General Enquiries</NavLink>

@@ -61,7 +61,7 @@ export default function RequestDemoPage() {
     <>
       <Seo
         title="Request a Demo"
-        description="See a THAMIZORA management system live — request a personalised demo of our hospital, school, property, church, hotel or e-commerce software."
+        description="See a THAMIZARA management system live — request a personalised demo of our hospital, school, property, church, hotel or e-commerce software."
         path="/request-demo"
       />
       <PageHeader

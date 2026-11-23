@@ -51,7 +51,7 @@ export function sendByEmail(data) {
     `Quotation request — ${data.serviceCategory || "New project"} (${data.name})`,
   );
   const body = encodeURIComponent(
-    `Hello THAMIZORA team,\n\nPlease prepare a quotation for the following enquiry:\n\n${buildEnquirySummary(data)}`,
+    `Hello THAMIZARA team,\n\nPlease prepare a quotation for the following enquiry:\n\n${buildEnquirySummary(data)}`,
   );
   return `mailto:${siteConfig.contact.email}?subject=${subject}&body=${body}`;
 }
@@ -61,7 +61,7 @@ export function sendByWhatsApp(data) {
   if (!number) return null;
   const text = encodeURIComponent(
     [
-      "Hello THAMIZORA, I'd like a quotation.",
+      "Hello THAMIZARA, I'd like a quotation.",
       line("Name", data.name),
       line("Service", data.serviceCategory),
       line("Country", data.country),

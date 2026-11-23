@@ -6,7 +6,7 @@ const esc = (s = "") =>
 const shell = (title, bodyHtml) => `
   <div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:0 auto;color:#17243A">
     <div style="background:#245BDB;padding:20px 28px;border-radius:12px 12px 0 0">
-      <strong style="color:#fff;font-size:16px">THAMIZORA Technologies</strong>
+      <strong style="color:#fff;font-size:16px">THAMIZARA Technologies</strong>
     </div>
     <div style="border:1px solid #E5EAF2;border-top:none;padding:28px;border-radius:0 0 12px 12px">
       <h2 style="margin:0 0 16px;font-size:18px">${title}</h2>
@@ -19,12 +19,12 @@ const shell = (title, bodyHtml) => `
 
 export function customerContactAck({ name, reference }) {
   return {
-    subject: "We received your enquiry — THAMIZORA Technologies",
-    text: `Hello ${name},\n\nThank you for contacting THAMIZORA Technologies. Your enquiry ${reference} has been received and our team will review it shortly.\n\nWe typically respond within 1–2 business days.\n\n— THAMIZORA Technologies`,
+    subject: "We received your enquiry — THAMIZARA Technologies",
+    text: `Hello ${name},\n\nThank you for contacting THAMIZARA Technologies. Your enquiry ${reference} has been received and our team will review it shortly.\n\nWe typically respond within 1–2 business days.\n\n— THAMIZARA Technologies`,
     html: shell(
       "We received your enquiry",
       `<p>Hello ${esc(name)},</p>
-       <p>Thank you for contacting THAMIZORA Technologies. Your enquiry
+       <p>Thank you for contacting THAMIZARA Technologies. Your enquiry
           <strong>${esc(reference)}</strong> has been received and our team
           will review it shortly.</p>
        <p>We typically respond within 1–2 business days.</p>`,
@@ -35,7 +35,7 @@ export function customerContactAck({ name, reference }) {
 export function customerQuotationAck({ name, reference, currency }) {
   return {
     subject: `Quotation request received — ${reference}`,
-    text: `Hello ${name},\n\nYour quotation request ${reference} has been received.\n\nOur team will review your requirements and prepare a customised quotation${currency ? ` in ${currency}` : ""}. No pricing is generated automatically — every quotation is prepared manually for your specific project.\n\nKeep your reference number for future correspondence.\n\n— THAMIZORA Technologies`,
+    text: `Hello ${name},\n\nYour quotation request ${reference} has been received.\n\nOur team will review your requirements and prepare a customised quotation${currency ? ` in ${currency}` : ""}. No pricing is generated automatically — every quotation is prepared manually for your specific project.\n\nKeep your reference number for future correspondence.\n\n— THAMIZARA Technologies`,
     html: shell(
       "Your quotation request was received",
       `<p>Hello ${esc(name)},</p>

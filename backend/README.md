@@ -1,6 +1,6 @@
-# THAMIZORA API
+# THAMIZARA API
 
-Business management backend for THAMIZORA Technologies.
+Business management backend for THAMIZARA Technologies.
 
 - Node.js + Express (ES modules) · MySQL 8 via mysql2 · JWT + bcrypt · Zod
   validation · Nodemailer · Helmet · CORS allowlist · express-rate-limit · Pino

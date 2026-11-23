@@ -228,7 +228,7 @@ export async function forgotPassword(email, ctx) {
   const link = `${env.ADMIN_APP_URL}/reset-password?token=${token}`;
   await sendMail({
     to: email,
-    subject: "Reset your THAMIZORA admin password",
+    subject: "Reset your THAMIZARA admin password",
     text: `Hello ${rows[0].name},\n\nUse this link to reset your password (valid ${env.PASSWORD_RESET_TTL_MINUTES} minutes):\n${link}\n\nIf you did not request this, ignore this email.`,
   });
   await audit({ actorId: rows[0].id, action: "auth.password.reset_requested", entityType: "user", entityId: rows[0].id, ip: ctx.ip });

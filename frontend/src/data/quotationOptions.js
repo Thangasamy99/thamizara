@@ -1,7 +1,7 @@
 /**
  * Options for the quotation request wizard.
  * Budget ranges are configurable per currency — they describe the CLIENT'S
- * budget expectation, not THAMIZORA's prices. All quotes are prepared manually.
+ * budget expectation, not THAMIZARA's prices. All quotes are prepared manually.
  */
 
 export const countries = ["Cameroon", "Nigeria", "Other"];

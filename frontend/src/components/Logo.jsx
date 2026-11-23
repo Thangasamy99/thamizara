@@ -23,7 +23,7 @@ export default function Logo({ light = false }) {
           light ? "text-white" : "text-ink-900"
         }`}
       >
-        THAMIZORA
+        THAMIZARA
         <span className={`block text-[10px] font-semibold tracking-[0.22em] ${light ? "text-white/60" : "text-brand-600"}`}>
           TECHNOLOGIES
         </span>

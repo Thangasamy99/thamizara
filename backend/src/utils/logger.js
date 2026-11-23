@@ -2,7 +2,7 @@ import pino from "pino";
 import env from "../config/env.js";
 
 const logger = pino({
-  name: "thamizora-api",
+  name: "thamizara-api",
   level: env.LOG_LEVEL,
   // Never log these even if accidentally attached to a request/response object.
   redact: {

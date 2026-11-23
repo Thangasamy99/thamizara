@@ -1,4 +1,4 @@
-# THAMIZORA Technologies
+# THAMIZARA Technologies
 
 | Directory | What it is |
 |---|---|
