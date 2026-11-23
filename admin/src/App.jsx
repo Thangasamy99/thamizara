@@ -17,7 +17,7 @@ function Layout({ children }) {
         <NavLink to="/enquiries">General Enquiries</NavLink>
         <div className="foot">
           Signed in
-          <button onClick={() => { setToken(null); window.location.href = "/login"; }}>
+          <button onClick={() => { setToken(null); window.location.href = `${import.meta.env.BASE_URL}login`; }}>
             Sign out
           </button>
         </div>
@@ -29,7 +29,7 @@ function Layout({ children }) {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={requireAuth(<Layout><Dashboard /></Layout>)} />

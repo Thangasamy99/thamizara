@@ -26,8 +26,12 @@ app.use(helmet());
 app.use(
   cors({
     origin: (origin, cb) => {
-      // Allow same-origin / non-browser clients (no Origin header).
-      if (!origin || env.CORS_ORIGINS.includes(origin)) return cb(null, true);
+      // Allow same-origin / non-browser clients (no Origin header), the
+      // configured allowlist, and our own deployed site/admin origins.
+      const allowed = new Set([
+        ...env.CORS_ORIGINS, env.PUBLIC_SITE_URL, env.ADMIN_APP_URL,
+      ]);
+      if (!origin || allowed.has(origin)) return cb(null, true);
       // In development, any localhost/127.0.0.1 origin is fine (Vite, previews).
       if (!env.isProd && /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) {
         return cb(null, true);

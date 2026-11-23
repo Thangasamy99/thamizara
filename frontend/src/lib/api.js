@@ -5,7 +5,12 @@
  * keeps its mailto/WhatsApp fallback behaviour. No secrets ever live here.
  */
 
-const BASE = (import.meta.env.VITE_API_BASE_URL ?? "").replace(/\/$/, "");
+// Same-origin API on deployed hosts (Vercel routes /api/* to the backend);
+// empty on localhost without an env var so the mailto fallback still works.
+const isLocal = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+const BASE = (
+  import.meta.env.VITE_API_BASE_URL ?? (isLocal ? "" : "/api/v1")
+).replace(/\/$/, "");
 
 export const apiEnabled = Boolean(BASE);
 

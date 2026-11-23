@@ -1,8 +1,14 @@
-const BASE = (import.meta.env.VITE_API_BASE_URL ?? "").replace(/\/$/, "");
+// Local dev hits the API on :4000; deployed, Vercel routes /api/* same-origin.
+const isLocal = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+const BASE = (
+  import.meta.env.VITE_API_BASE_URL ??
+  (isLocal ? "http://localhost:4000/api/v1" : "/api/v1")
+).replace(/\/$/, "");
 const TOKEN_KEY = "tmz_admin_token";
 
 export const getToken = () => localStorage.getItem(TOKEN_KEY);
 export const setToken = (t) => (t ? localStorage.setItem(TOKEN_KEY, t) : localStorage.removeItem(TOKEN_KEY));
+const loginPath = `${import.meta.env.BASE_URL}login`;
 
 async function request(path, { method = "GET", body } = {}) {
   const res = await fetch(`${BASE}${path}`, {
@@ -16,7 +22,7 @@ async function request(path, { method = "GET", body } = {}) {
   const data = await res.json().catch(() => null);
   if (res.status === 401) {
     setToken(null);
-    window.location.href = "/login";
+    window.location.href = loginPath;
     throw new Error("Session expired");
   }
   if (!res.ok) throw new Error(data?.message ?? `Request failed (${res.status})`);
